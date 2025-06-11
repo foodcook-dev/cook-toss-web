@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/cook-toss-web/static/css/main.fc0db0a0.css",
-    "main.js": "/cook-toss-web/static/js/main.b9fe1548.js",
-    "static/js/453.2093fd15.chunk.js": "/cook-toss-web/static/js/453.2093fd15.chunk.js",
-    "index.html": "/cook-toss-web/index.html",
-    "main.fc0db0a0.css.map": "/cook-toss-web/static/css/main.fc0db0a0.css.map",
-    "main.b9fe1548.js.map": "/cook-toss-web/static/js/main.b9fe1548.js.map",
-    "453.2093fd15.chunk.js.map": "/cook-toss-web/static/js/453.2093fd15.chunk.js.map"
+    "main.css": "/static/css/main.fc0db0a0.css",
+    "main.js": "/static/js/main.bb4c925d.js",
+    "static/js/453.2093fd15.chunk.js": "/static/js/453.2093fd15.chunk.js",
+    "index.html": "/index.html",
+    "main.fc0db0a0.css.map": "/static/css/main.fc0db0a0.css.map",
+    "main.bb4c925d.js.map": "/static/js/main.bb4c925d.js.map",
+    "453.2093fd15.chunk.js.map": "/static/js/453.2093fd15.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.fc0db0a0.css",
-    "static/js/main.b9fe1548.js"
+    "static/js/main.bb4c925d.js"
   ]
 }
