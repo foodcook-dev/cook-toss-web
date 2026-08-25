@@ -4,7 +4,29 @@ import { useEffect, useState } from "react";
 const clientKey = "test_gck_docs_Ovk5rk1EwkEbP0W43n07xlzm";
 const customerKey = "tnFT-7Thldg2nQypJfD-P";
 
+// 앱(WebView)이 주입한 스크립트가 결제위젯 렌더링을 담당하는데, 기기/네트워크
+// 타이밍에 따라 그 스크립트가 DOM 준비 전에 실행되어 조용히 실패하는 경우가 있다.
+// 일정 시간 뒤에도 #payment-method가 비어있으면(=위젯이 안 그려짐) 재시도할 수
+// 있는 안내를 보여준다. 새로고침하면 앱의 주입 스크립트도 처음부터 다시 실행된다.
+const WIDGET_RENDER_CHECK_DELAY_MS = 1500;
+
 function Payment() {
+  const [widgetFailed, setWidgetFailed] = useState(false);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      const paymentMethodEl = document.getElementById("payment-method");
+      const isRendered =
+        paymentMethodEl && paymentMethodEl.childElementCount > 0;
+
+      if (!isRendered) {
+        setWidgetFailed(true);
+      }
+    }, WIDGET_RENDER_CHECK_DELAY_MS);
+
+    return () => clearTimeout(timer);
+  }, []);
+
   // const [amount, setAmount] = useState({
   //   currency: "KRW",
   //   value: 50_000,
@@ -63,6 +85,26 @@ function Payment() {
 
   //   widgets.setAmount(amount);
   // }, [widgets, amount]);
+
+  if (widgetFailed) {
+    return (
+      <div className="wrapper">
+        <div className="box_section flex-column align-center text-center">
+          <p className="title">결제 화면을 불러오지 못했어요</p>
+          <p className="description">
+            네트워크 상태를 확인하고 다시 시도해주세요.
+          </p>
+          <button
+            className="btn primary w-90"
+            style={{ marginTop: 32 }}
+            onClick={() => window.location.reload()}
+          >
+            다시 시도
+          </button>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="wrapper">

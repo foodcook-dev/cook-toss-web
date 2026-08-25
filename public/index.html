@@ -3,6 +3,11 @@
 
 <head>
   <meta charset="utf-8" />
+  <!-- 앱 WebView(incognito=false)가 index.html 자체를 디스크에 캐싱해서 배포 이후에도
+       예전 버전을 계속 보여주는 문제를 막기 위한 캐시 무효화 -->
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+  <meta http-equiv="Pragma" content="no-cache" />
+  <meta http-equiv="Expires" content="0" />
   <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="theme-color" content="#000000" />
